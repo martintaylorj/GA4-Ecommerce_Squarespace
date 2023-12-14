@@ -1,0 +1,75 @@
+<script>
+    //Checkout step 1: Clicking Checkout on Cart Page
+    // Select the checkout button element and add an click event listener. If the element is clicked, run the productClickedCheckoutPush function.
+
+    document.querySelectorAll(".cart-checkout-button").forEach(function (titleElement) {
+        titleElement.addEventListener('click', productClickedCheckoutPush);
+    });
+
+    /*The productClickedCheckoutPush function checks for all of the products in the cart, which all have the class name "cart-row". For each of those rows/products, we will run a function that:
+      1. Creates an empty productListArray 
+      2. Defines a productObject variable as the function: buildProductDataLayer
+      3. The productObject values are pushed to the productListArray each time a product/row is found on the page
+      4. Push values to the dataLayer. The products data will come from the productListArray
+    */
+
+    function productClickedCheckoutPush() {
+        //  event.preventDefault();
+        //  event.stopPropagation();
+
+        window.dataLayer = window.dataLayer || [];
+
+        // Create an array to store product data
+        var products = [];
+
+        // Select all elements with class "ProductList-meta" to access all of the product blocks (as the parent element)
+        var productCartBlocks = document.querySelectorAll('.cart-row');
+
+        // Loop through each product and collect data
+        productCartBlocks.forEach(function (productCartBlocks) {
+            // Find the child element with the class "ProductList-title" and get its inner text
+            var productTitle = productCartBlocks.querySelector('.cart-row-title').innerHTML;
+            var productPriceRaw = productCartBlocks.querySelector('.cart-row-price').innerText;
+            var productQuantity = productCartBlocks.querySelector('.cart-row-qty-input').value;
+            var productPrice = Math.round((parseFloat(productPriceRaw.replace(/[^\d.-]/g, '')) / parseFloat(productQuantity.replace(/[^\d.-]/g, '')))).toFixed(2);
+
+            //variant info
+            var sizeElement = productCartBlocks.querySelector('p[aria-label*="Size variant"]');
+            var colorElement = productCartBlocks.querySelector('p[aria-label*="Color variant"]');
+
+            var itemVariantSize = null;
+            var itemVariantColor = null;
+
+            if (sizeElement) {
+                itemVariantSize = sizeElement.textContent.split(': ')[1];
+            }
+
+            if (colorElement) {
+                itemVariantColor = colorElement.textContent.split(': ')[1];
+            }
+
+            // Get the url path of the product list. I use this as my item list location.
+            var itemListLocation = document.location.pathname;
+
+            // Add the product data to the array
+            products.push({
+                item_name: productTitle,
+                price: productPrice,
+                quantity: productQuantity,
+                item_variant: itemVariantSize + " | " + itemVariantColor,
+                item_variant_color: itemVariantColor,
+                item_variant_size: itemVariantSize,
+            });
+        });
+
+        // Push the array of products into dataLayer
+        window.dataLayer.push({
+            'event': 'begin_checkout',
+            ecommerce: {
+                items: products
+            }
+        });
+    }
+
+    // Call the function to push the data
+</script>
