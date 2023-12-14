@@ -1,0 +1,87 @@
+<script>
+    /*The productClickedCheckoutPush function checks for all of the products in the cart, which all have the class name "cart-row". For each of those rows/products, we will run a function that:
+        1. Creates an empty productListArray
+        2. Defines a productObject variable as the function: buildProductDataLayer
+        3. The productObject values are pushed to the productListArray each time a product/row is found on the page
+        4. Push values to the dataLayer. The products data will come from the productListArray
+        */
+
+    var jsonId = JSON.parse(document.querySelector('script[type="application/json"]').innerText);
+    var jsonSubtotal = jsonId.cart.amountDue.decimalValue;
+
+    function productClickedCheckoutPush() {
+        /* Prevent the default behavior (page reload)
+        event.preventDefault();
+        event.stopPropagation();
+        */
+
+        var productListArray = buildProductDataLayerItemArray();
+
+        dataLayer.push({
+            'event': 'view_cart',
+            ecommerce: {
+                currency: "USD",
+                value: jsonSubtotal,
+                items: productListArray,
+            }
+        });
+    }
+
+    // the buildProductDataLayer functions handle all processing of the values to the dataLayer
+
+    function buildProductDataLayerItemArray() {
+
+        //event.preventDefault();
+        //event.stopPropagation();
+
+        var dlItemArray = [];
+
+        var itemArray = jsonId.cart.items;
+
+        for (var i = 0; i < itemArray.length; i++) {
+            var productID = itemArray[i].id;
+            var productTitle = itemArray[i].productName;
+            var productPrice = itemArray[i].unitPrice.decimalValue;
+            var productQuantity = itemArray[i].quantity;
+
+            var itemVariantColor = null;
+            var itemVariantSize = null;
+
+            var variantArray = itemArray[i].variantOptions;
+
+            var variantConcatenated = null;
+            for (var k = 0; k < variantArray.length; k++) {
+                // Declare variant object:
+
+                var variantName = variantArray[k].name;
+                var variantValue = variantArray[k].value;
+
+                // Check for variantName and assign values to corresponding variables
+                if (variantName === 'Size') {
+                    itemVariantSize = variantValue;
+                } else if (variantName === 'Color') {
+                    itemVariantColor = variantValue;
+                }
+                variantConcatenated = (itemVariantColor && itemVariantSize) ? itemVariantSize + ' | ' + itemVariantColor : (itemVariantSize || itemVariantColor || null);
+            }
+
+            var productObject = {
+                'item_name': productTitle,
+                'price': productPrice,
+                'quantity': productQuantity,
+                'item_variant': variantConcatenated,
+                'item_variant_color': itemVariantColor,
+                'item_variant_size': itemVariantSize,
+
+            };
+
+            dlItemArray.push(productObject);
+        }
+
+        //Once we have defined all of the product variables we need to push to the dataLayer, we then define the productObject whose values are the previously defined product variables
+
+        return dlItemArray;
+    };
+
+    productClickedCheckoutPush();
+</script>
