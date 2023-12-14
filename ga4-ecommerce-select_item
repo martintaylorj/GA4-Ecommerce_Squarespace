@@ -1,0 +1,46 @@
+<script>
+//Ecommerce Product Select Item Event
+
+// Select all elements with class "ProductList-item" for product titles. For each element, add an click event listener. If the element is clicked, run the productSelectPush function.
+document.querySelectorAll(".ProductList-item").forEach(function (titleElement) {
+    titleElement.addEventListener('click', productSelectPush);
+});
+
+//This function finds the closest productList-item class, grabs the product title and price data, and pushes the selected item's product title and price in the dataLayer. Function is attached to click event listener
+
+function productSelectPush(event) {
+    /* Prevent the default behavior (page reload). I use this when testing in the console.
+    event.preventDefault();
+    event.stopPropagation();
+    */
+    window.dataLayer = window.dataLayer || [];
+
+    // Select element of clicked product's title and get product title
+    var productElement = event.target.closest(".ProductList-item");
+    var productTitleElement = productElement.querySelector(".ProductList-title");
+    var productTitle = productTitleElement.innerHTML;
+    var clickedClassName = event.target.className;
+
+    // Select element of clicked product's price and get product price inner text
+
+    // look at product title element's class and get price element that is a child of the title element
+    var productPriceElement = productElement.querySelector(".product-price"); 
+    var productPrice = productPriceElement.innerText; //get the inner text within
+
+    // Get the url path of the product list
+    var itemListLocation = document.location.pathname;
+
+    // Push the data into dataLayer along with the position
+    window.dataLayer.push({
+        'event': 'select_item',
+        ecommerce: {
+            items: [{
+                item_name: productTitle,
+                price: productPrice,
+                item_list_name: itemListLocation,
+                clicked_class_name: clickedClassName,
+            }]
+        }
+    });
+};
+</script>
