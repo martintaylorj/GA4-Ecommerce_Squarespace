@@ -1,0 +1,60 @@
+<script>
+    //view_item: This event signifies that product details were shown to the user. Use this event to discover the most popular items viewed. This will work on the Quick View or the Product Summary
+
+    function productViewDetailsPush() {
+        window.dataLayer = window.dataLayer || [];
+
+        // Create an array to store product data
+        var products = [];
+        var itemListName = null;
+
+        // Select all elements with class "ProductList-meta" to access all of the product blocks (as the parent element)
+        var productListBlocks = document.querySelectorAll('.ProductItem-summary');
+
+        // Loop through each product and collect data
+        productListBlocks.forEach(function (productListBlocks) {
+            // Find the child element with the class "ProductList-title" and get its inner text
+            var productTitle = productListBlocks.querySelector('.ProductItem-details-title').innerText;
+            var productPrice = productListBlocks.querySelector('.product-price').innerText;
+
+            /* Get the title and price text
+            var productTitle = productText.innerText;
+            var productPrice = productPriceElement.innerText;
+        */
+            //Distinguish between the full page product summary and the quick view product summary:
+
+            var productSummaryType = null;
+
+            if (document.querySelector(".sqs-product-quick-view-content")) {
+                productSummaryType = "Quick View"
+            } if (document.querySelector(".sqs-product-quick-view-content")) {
+                productSummaryType = "Quick View"
+            }
+
+            if (document.querySelector(".sqs-product-quick-view-content")) {
+                itemListName = "Product Summary - Quick View"
+            } else {
+                itemListName = "Product Summary - Full Page"
+            }
+
+            // Add the product data to the array
+            products.push({
+                item_name: productTitle,
+                price: productPrice,
+                item_list_name: itemListName
+
+            });
+        });
+
+        // Push the array of products into dataLayer
+        window.dataLayer.push({
+            'event': 'view_item',
+            ecommerce: {
+                items: products
+            }
+        });
+    }
+
+    // Call the function to push the data
+    productViewDetailsPush();
+</script>
