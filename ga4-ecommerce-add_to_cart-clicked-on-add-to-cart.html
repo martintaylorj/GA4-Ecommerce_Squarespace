@@ -1,0 +1,53 @@
+<script>
+//Ecommerce Add to Cart Event - When user clicks on add to cart text
+
+var isPushed = false;
+
+    //event.preventDefault();
+    //event.stopPropagation();
+
+    window.dataLayer = window.dataLayer || [];
+    var productElement = event.target.closest(".ProductItem-summary");
+    var productTitle = productElement.querySelector(".ProductItem-details-title").innerText;
+    var productPrice = productElement.querySelector(".product-price").innerText;
+    var productQuantity = productElement.querySelector(".product-quantity-input input").value;
+
+    var itemvariantColorRaw = productElement.querySelector('[data-variant-option-name="Color"]');
+    var itemvariantSizeRaw = productElement.querySelector('[data-variant-option-name="Size"]');
+
+    var itemVariantColor = null; // Initialize variables with default values
+    var itemVariantSize = null;
+
+    if (itemvariantColorRaw) {
+        itemVariantColor = itemvariantColorRaw.value;
+        //console.log("testcolor is: " + testColorValue);
+    }
+    if (itemvariantSizeRaw) {
+        itemVariantSize = itemvariantSizeRaw.value;
+        //console.log("testsize is: " + testSizeValue);
+    }
+    var variantConcatenated = (itemVariantColor && itemVariantSize) ? itemVariantSize + ' | ' + itemVariantColor : (itemVariantSize || itemVariantColor || null);
+
+
+    if (!isPushed) {
+        dataLayer.push({
+            'event': 'add_to_cart',
+            'ecommerce': {
+                'currencyCode': 'USD',
+                    'items': [
+                        {
+                            'item_name': productTitle,
+                            'price': productPrice,
+                            'quantity': productQuantity,
+                            'item_variant': variantConcatenated || null, // Handle both null values
+                            'item_variant_color': itemVariantColor,
+                            'item_variant_size': itemVariantSize,
+                        }
+                    ]
+                
+            }
+        });
+        isPushed = true; // Set the flag to true after the push
+    }
+
+</script>
