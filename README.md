@@ -64,7 +64,7 @@ All of these ecommerce events will be implemented using GTM’s custom HTML tag 
 
 💡I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
 
-## view_item: When a user views a product.
+## view_item
 [Get the custom code here in my repo.](ga4-ecommerce-view_item.html)
 
 ### Trigger: 
