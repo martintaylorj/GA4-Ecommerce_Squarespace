@@ -1,0 +1,108 @@
+<script>
+    //code to parse JSON on confirmation page:
+    fetch(window.location.href).then(function (pageContents) {
+        pageContents.text().then(function (bodyText) {
+            var parser = new DOMParser();
+            var parsed = parser.parseFromString(bodyText, "text/html");
+
+            var orderJson = JSON.parse(parsed.querySelector("script#bootstrap-data").innerText);
+            productOrderPush(orderJson);
+        });
+    });
+
+    //JSON.parse(parsed.querySelector("script#bootstrap-data").innerText);
+
+    //Order Confirmation Page
+
+    /*The productOrderPush function checks for all of the products in the JSON object that contains all of the order information. For each of those products, we will run a function that:
+      1. Creates an empty productListArray 
+      2. Defines a productObject variable as the function: buildProductDataLayer
+      3. The productObject values are pushed to the productListArray each time a product/row is found on the page
+      4. Push values to the dataLayer. The products data will come from the productListArray
+    */
+
+    // this line is unnecessary when loading tags in GTM. If testing using the browser console, use: window.addEventListener('DOMContentLoaded', productOrderPush); 
+
+    function productOrderPush(orderJson) {
+        //event.preventDefault(); // Prevent the default event behavior
+        //event.stopPropagation(); // Stop event propagation
+
+        var productListArray = buildProductDataLayerItemArray(orderJson);
+
+        dataLayer.push({
+
+            'event': 'purchase',
+            'ecommerce': {
+                transaction_id: orderJson.order.orderNumber,
+                value: orderJson.order.subtotal.value,
+                tax: orderJson.order.taxTotal.value,
+                shipping: orderJson.order.shippingTotal.value,
+                currency: orderJson.order.subtotal.currency,
+                //coupon: "SUMMER_SALE",
+                items: productListArray
+
+            }
+        });
+
+
+    };
+
+    // the buildProductDataLayer functions handle all processing of the values to the dataLayer
+
+    function buildProductDataLayerItemArray(orderJson) {
+
+        //event.preventDefault();
+        //event.stopPropagation();
+
+        //var jsonId = JSON.parse(document.querySelector('script[type="application/json"]').innerText);
+
+        var dlItemArray = [];
+
+        var itemArray = orderJson.order.entries;
+
+        for (var i = 0; i < itemArray.length; i++) {
+            var productID = itemArray[i].id;
+            var productTitle = itemArray[i].name;
+            var productPrice = itemArray[i].purchasePrice.value;
+            var productQuantity = itemArray[i].quantity;
+
+            var itemVariantColor = null;
+            var itemVariantSize = null;
+
+            var variantArray = itemArray[i].variantOptions;
+
+            var variantConcatenated = null;
+            for (var k = 0; k < variantArray.length; k++) {
+                // Declare variant object:
+
+                var variantName = variantArray[k].name;
+                var variantValue = variantArray[k].value;
+
+                // Check for variantName and assign values to corresponding variables
+                if (variantName === 'Size') {
+                    itemVariantSize = variantValue;
+                } else if (variantName === 'Color') {
+                    itemVariantColor = variantValue;
+                }
+                variantConcatenated = (itemVariantColor && itemVariantSize) ? itemVariantSize + ' | ' + itemVariantColor : (itemVariantSize || itemVariantColor || null);
+
+            }
+
+            var productObject = {
+                'item_name': productTitle,
+                'item_id': productID,
+                'price': productPrice,
+                'quantity': productQuantity,
+                'item_variant': variantConcatenated,
+                'item_variant_color': itemVariantColor,
+                'item_variant_size': itemVariantSize,
+            };
+
+            dlItemArray.push(productObject);
+        }
+
+        //Once we have defined all of the product variables we need to push to the dataLayer, we then define the productObject whose values are the previously defined product variables
+
+        return dlItemArray;
+    };
+</script>
