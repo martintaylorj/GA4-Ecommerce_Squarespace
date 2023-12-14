@@ -39,7 +39,7 @@ If you're only interested in a particular event, click the link to skip to that 
 
 - **view_item_list**: When a user views a list of products or offerings. Scroll to [this section](#view-item-list)
 
-- **view_item**: When a user views a product
+- **view_item**: When a user views a product. Scroll to [this section](#view_item)
 
 - **select_item**: When a user selects a product from a list of items or offerings                                                                      
 
