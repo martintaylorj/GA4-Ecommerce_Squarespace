@@ -19,7 +19,8 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 
 <details>
 <summary>Expand to see a screenshot of GA4 Event Tag Configuration</summary>
-![image](./images/ga4-ecommerce-ga4-trigger-setup-in-gtm.png)
+
+![screenshot of GA4 ecommerce event tag](images/ga4-ecommerce-ga4 tag setup in gtm.png)
 
 </details>
 
@@ -34,7 +35,9 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 #### Trigger Configuration
 <details>
 <summary>Expand to see a screenshot of GA4 Event Trigger Configuration</summary>
+
 ![ga4-ecommerce-ga4 trigger setup in gtm](https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/assets/81248339/75b7b1a8-653f-4cd5-892e-1fa8f6eb3148)
+
 </details>
 
 **Trigger Type**: Custom Event > 
@@ -61,7 +64,10 @@ If you're only interested in a particular event, click the link to skip to that 
 
 All of these ecommerce events will be implemented using GTM’s custom HTML tag type:
 
+![screenshot of where to find the custom HTML tag type in GTM] (images/custom-html-tag-type.png)
+
 ## view_item_list
+
 [Get the custom code here in my repo.](ga4-ecommerce-view_item-list.html)
 
 ### Trigger Configuration:
@@ -72,6 +78,7 @@ All of these ecommerce events will be implemented using GTM’s custom HTML tag 
 💡I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
 
 ## view_item
+
 [Get the custom code here in my repo.](ga4-ecommerce-view_item.html)
 
 ### Trigger Configuration:
@@ -86,6 +93,7 @@ There are 2 triggers for this tag
 When the quick view pops up, there’s a CSS selector associated with it (.sqs-product-quick-view-content) that I use as my trigger.
 
 ## select_item
+
 [Get the custom code here in my repo.](ga4-ecommerce-select_item.html)
 
 ### Trigger Configuration:
@@ -100,7 +108,8 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 
 <details>
   <summary> Click on the Add to Cart Button</summary>
-  [Get the custom code here in my repo.](ga4-ecommerce-add_to_cart-clicked-on-add-to-cart.html)
+ 
+   [Get the custom code here in my repo.](ga4-ecommerce-add_to_cart-clicked-on-add-to-cart.html)
 
 https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda5856332fd1ea3bbce043f060f89ae/ga4-ecommerce-add_to_cart-clicked-on-add-to-cart.html 
  
@@ -114,7 +123,8 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 
 <details>
   <summary> Click on the Increment Button</summary>
-  [Get the custom code here in my repo.](ga4-ecommerce-add_to_cart-clicked-on-increment-button.html)
+  
+[Get the custom code here in my repo.](ga4-ecommerce-add_to_cart-clicked-on-increment-button.html)
  
 ### Trigger Configuration:
 **Trigger Type**: Click - All Elements
@@ -126,6 +136,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 </details>
 
 ## view_cart
+
 [Get the custom code here in my repo.](ga4-ecommerce-view_cart.html)
 
 ### Trigger Configuration: 
@@ -136,6 +147,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 💡I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
 
 ##  remove_from_cart
+
 [Get the custom code here in my repo.](ga4-ecommerce-remove_from_cart.htm)
 
 ### Trigger Configuration: 
@@ -146,6 +158,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 💡I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
 
 ## begin_checkout
+
 [Get the custom code here in my repo.](ga4-ecommerce-begin_checkout.html)
 
 ### Trigger Configuration:
@@ -156,6 +169,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 💡This code takes advantage of the JSON Squarespace creates out of the box for us. There’s actually JSON on every ecommerce page, but we can’t use it because its static on page load and doesn’t change if the user changes anything about the product or cart after the initial page load. 
 
 ## purchase
+
 [Get the custom code here in my repo.](ga4-ecommerce-purchase.html)
 
 ### Trigger Configuration:
