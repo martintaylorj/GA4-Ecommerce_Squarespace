@@ -19,7 +19,7 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 
 <details>
 <summary>Expand to see a screenshot of GA4 Event Tag Configuration</summary>
-![image](images/ga4-ecommerce-ga4-trigger-setup-in-gtm.png)
+![image](./images/ga4-ecommerce-ga4-trigger-setup-in-gtm.png)
 
 </details>
 
