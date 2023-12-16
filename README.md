@@ -1,4 +1,4 @@
-# GA4-Ecommerce_Squarespace
+# How to Implement GA4 Ecommerce in Squarespace Using Google Tag Manager
 This is a Google Tag Manager implementation guide to help Squarespace users track their ecommerce data in Google Analytics 4 (GA4).
 
 Currently, Squarespace's native GA4 integration only tracks purchases. But if ecommerce analytics is crucial for your business, I suggest utilizing Google Tag Manager to track the entire purchase flow instead of relying on the native GA4 integration. This way, you'll have the ability to:
