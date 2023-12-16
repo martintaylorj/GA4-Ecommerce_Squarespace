@@ -182,6 +182,6 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 Squarespace doesn’t make it easy to track your ecommerce data in GA4, but I’m hoping this guide helps you properly set it up in Google Tag Manager.
 If you did find this repo helpful, please [let me know in the discussion board](https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/discussions/1) so I know to continue creating this type of content. Have questions about the code? Let me know that too!
 
-Want  me to set up your implementation? Then [fill out my contact form here]((https://www.tayloreddata.com/book-a-discovery-call)https://www.tayloreddata.com/book-a-discovery-call) to start the conversation.
+Want  me to set up your implementation? Then [fill out my contact form](https://www.tayloreddata.com/book-a-discovery-call) to start the conversation.
 
 Thanks for reading!
