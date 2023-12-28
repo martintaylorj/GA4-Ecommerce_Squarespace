@@ -122,8 +122,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 
 **This trigger fires on**: Click Text contains ADD TO CART
 
-> [!TIP]
-> You can change the click text if you’re website uses different text.
+> 💡 You can change the click text if you’re website uses different text.
 </details>
 
 <details>
@@ -137,8 +136,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 **This trigger fires on**: Page Path contains /cart
   Trigger Type: Page View - Window Loaded
 
-> [!TIP]
-> I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
+> 💡  I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
 </details>
 
 ## view_cart
