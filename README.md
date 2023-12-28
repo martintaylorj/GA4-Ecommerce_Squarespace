@@ -64,7 +64,7 @@ If you're only interested in a particular event, click the link to skip to that 
 
 All of these ecommerce events will be implemented using GTM’s custom HTML tag type:
 
-![screenshot of where to find the custom HTML tag type in GTM] (./images/custom-html-tag-type.png)
+![screenshot of where to find the custom HTML tag type in GTM](images/custom-html-tag-type.png)
 
 ## view_item_list
 
@@ -89,6 +89,7 @@ There are 2 triggers for this tag
    
 2.**Trigger Type**:  Element Visibility > Selection Method > CSS Selector > Element Selector: .sqs-product-quick-view-content
 
+> [!TIP]
 >💡For my Squarespace template, there are two ways for a user to view an item, by clicking the quick view button and seeing the quick view popup or by viewing the full product page. When the full product page is viewed, Squarespace automatically pushes a custom event to the data layer: ssRawProductDetailPush. 
 When the quick view pops up, there’s a CSS selector associated with it (.sqs-product-quick-view-content) that I use as my trigger.
 
