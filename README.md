@@ -26,7 +26,7 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 
 **Tag Type:** Google Analytics: GA4 Event
 
-**Event Name**: {{Event}} - this will push the same event name that's in the data layer to your GA4 property
+**Event Name**: `{{Event}}` - this will push the same event name that's in the data layer to your GA4 property
 
 **Ecommerce**: Check the "Send Ecommerce data" option
 
@@ -40,9 +40,7 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 
 </details>
 
-**Trigger Type**: Custom Event > 
-
-Event name: view_promotion|select_promotion|view_item_list|select_item|view_item|add_to_cart|view_cart|begin_checkout|remove_from_cart|purchase
+**Trigger Type**: Custom Event > Event name: `view_promotion|select_promotion|view_item_list|select_item|view_item|add_to_cart|view_cart|begin_checkout|remove_from_cart|purchase`
 
 Check "Use regex matching"
 

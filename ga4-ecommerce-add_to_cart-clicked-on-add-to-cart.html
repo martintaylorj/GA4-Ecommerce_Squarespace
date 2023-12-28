@@ -1,7 +1,7 @@
 <script>
-//Ecommerce Add to Cart Event - When user clicks on add to cart text.
+    //Ecommerce Add to Cart Event - When user clicks on add to cart text.
 
-var isPushed = false;
+    var isPushed = false;
 
     //event.preventDefault();
     //event.stopPropagation();
@@ -34,17 +34,17 @@ var isPushed = false;
             'event': 'add_to_cart',
             'ecommerce': {
                 'currencyCode': 'USD',
-                    'items': [
-                        {
-                            'item_name': productTitle,
-                            'price': productPrice,
-                            'quantity': productQuantity,
-                            'item_variant': variantConcatenated || null, // Handle both null values
-                            'item_variant_color': itemVariantColor,
-                            'item_variant_size': itemVariantSize,
-                        }
-                    ]
-                
+                'items': [
+                    {
+                        'item_name': productTitle,
+                        'price': productPrice,
+                        'quantity': productQuantity,
+                        'item_variant': variantConcatenated || null, // Handle both null values
+                        'item_variant_color': itemVariantColor,
+                        'item_variant_size': itemVariantSize,
+                    }
+                ]
+
             }
         });
         isPushed = true; // Set the flag to true after the push

@@ -1,127 +1,127 @@
 <script>
-//Ecommerce Remove from Cart Event
+    //Ecommerce Remove from Cart Event
 
-// Add event listeners for click on buttons with aria-label containing 'Remove'
-document.querySelectorAll('button[aria-label*="Remove"]').forEach(function (buttonElement) {
-    buttonElement.addEventListener('click', productRemovedFromCartPush);
-
-});
-
-// Add event listeners for select/change on buttons with aria-label containing 'decrement'
-document.querySelectorAll('button[aria-label*="decrement"]').forEach(function (buttonElement) {
-    buttonElement.addEventListener('click', productDecrementedFromCartPush);
-});
-//This function finds the closest productList-item class, grabs the product title and price data, and pushes the selected item's product title and price in the dataLayer. Function is attached to click event listener
-
-
-function productRemovedFromCartPush(event) {
-    // Prevent the default behavior (page reload)
-    //event.preventDefault();
-    //event.stopPropagation();
-
-    window.dataLayer = window.dataLayer || [];
-
-    // Select element of clicked product's title and get product title
-    var productBlock = event.target.closest(".cart-row");
-    var productBlock = event.target.closest(".cart-row");
-    var productTitle = productBlock.querySelector(".cart-row-title").innerText; //get the inner text within
-    var quantityInput = productBlock.querySelector('.cart-row-qty-input');
-    var productQuantityOriginal = quantityInput.value;
-    var productPriceOriginal = productBlock.querySelector(".cart-row-price").innerText; //get the inner text within
-    var productPrice = Math.round((parseFloat(productPriceOriginal.replace(/[^\d.-]/g, '')) / parseFloat(productQuantityOriginal.replace(/[^\d.-]/g, '')))).toFixed(2);
-
-    var sizeVariant = productBlock.querySelector('p[aria-label*="Size variant"]');
-    var colorVariant = productBlock.querySelector('p[aria-label*="Color variant"]');
-
-    // Initialize variant variables
-    var item_variant_size = null;
-    var item_variant_color = null;
-
-    // Check if the size variant exists and extract its value
-    if (sizeVariant) {
-        var productSizeRaw = sizeVariant.textContent;
-        item_variant_size = productSizeRaw.replace('Size: ', ''); // Remove 'Size: ' from the text
-    }
-
-    // Check if the color variant exists and extract its value
-    if (colorVariant) {
-        var productColorRaw = colorVariant.textContent;
-        item_variant_color = productColorRaw.replace('Color: ', ''); // Remove 'Color: ' from the text
-    }
-
-    // Push the data into dataLayer along with the position
-    dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-    dataLayer.push({
-        'event': 'remove_from_cart',
-        'ecommerce': {
-            'currencyCode': 'USD',
-            'items': [{                        //  adding a product to a shopping cart.
-                'item_name': productTitle,
-                'price': productPrice,
-                'item_variant': item_variant_size + " | " + item_variant_color,
-                'quantity': productQuantityOriginal,
-                'item_variant_size': item_variant_size,
-                'item_variant_color': item_variant_color,
-
-            }]
-        }
+    // Add event listeners for click on buttons with aria-label containing 'Remove'
+    document.querySelectorAll('button[aria-label*="Remove"]').forEach(function (buttonElement) {
+        buttonElement.addEventListener('click', productRemovedFromCartPush);
 
     });
-};
 
-function productDecrementedFromCartPush(event) {
-    // Prevent the default behavior (page reload)
-    //event.preventDefault();
-    //event.stopPropagation();
-
-    window.dataLayer = window.dataLayer || [];
-
-    // Select element of clicked product's title and get product title
-    var productBlock = event.target.closest(".cart-row");
-    var productTitle = productBlock.querySelector(".cart-row-title").innerText; //get the inner text within
-    var quantityInput = productBlock.querySelector('.cart-row-qty-input');
-    var productQuantityOriginal = quantityInput.value;
-    var productPriceOriginal = productBlock.querySelector(".cart-row-price").innerText; //get the inner text within
-    var productPrice = Math.round((parseFloat(productPriceOriginal.replace(/[^\d.-]/g, '')) / parseFloat(productQuantityOriginal.replace(/[^\d.-]/g, '')))).toFixed(2);
-
-    var sizeVariant = productBlock.querySelector('p[aria-label*="Size variant"]');
-    var colorVariant = productBlock.querySelector('p[aria-label*="Color variant"]');
-
-    // Initialize variant variables
-    var item_variant_size = null;
-    var item_variant_color = null;
-
-    // Check if the size variant exists and extract its value
-    if (sizeVariant) {
-        var productSizeRaw = sizeVariant.textContent;
-        item_variant_size = productSizeRaw.replace('Size: ', ''); // Remove 'Size: ' from the text
-    }
-
-    // Check if the color variant exists and extract its value
-    if (colorVariant) {
-        var productColorRaw = colorVariant.textContent;
-        item_variant_color = productColorRaw.replace('Color: ', ''); // Remove 'Color: ' from the text
-    }
+    // Add event listeners for select/change on buttons with aria-label containing 'decrement'
+    document.querySelectorAll('button[aria-label*="decrement"]').forEach(function (buttonElement) {
+        buttonElement.addEventListener('click', productDecrementedFromCartPush);
+    });
+    //This function finds the closest productList-item class, grabs the product title and price data, and pushes the selected item's product title and price in the dataLayer. Function is attached to click event listener
 
 
-    // Push the data into dataLayer along with the position
-    dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
-    dataLayer.push({
-        'event': 'remove_from_cart',
-        'ecommerce': {
-            'currencyCode': 'USD',
-            'items': [{                        //  adding a product to a shopping cart.
-                'item_name': productTitle,
-                'price': productPrice,
-                'item_variant': item_variant_size + " | " + item_variant_color,
-                'quantity': 1,
-                'item_variant_size': item_variant_size,
-                'item_variant_color': item_variant_color,
+    function productRemovedFromCartPush(event) {
+        // Prevent the default behavior (page reload)
+        //event.preventDefault();
+        //event.stopPropagation();
 
-            }]
+        window.dataLayer = window.dataLayer || [];
+
+        // Select element of clicked product's title and get product title
+        var productBlock = event.target.closest(".cart-row");
+        var productBlock = event.target.closest(".cart-row");
+        var productTitle = productBlock.querySelector(".cart-row-title").innerText; //get the inner text within
+        var quantityInput = productBlock.querySelector('.cart-row-qty-input');
+        var productQuantityOriginal = quantityInput.value;
+        var productPriceOriginal = productBlock.querySelector(".cart-row-price").innerText; //get the inner text within
+        var productPrice = Math.round((parseFloat(productPriceOriginal.replace(/[^\d.-]/g, '')) / parseFloat(productQuantityOriginal.replace(/[^\d.-]/g, '')))).toFixed(2);
+
+        var sizeVariant = productBlock.querySelector('p[aria-label*="Size variant"]');
+        var colorVariant = productBlock.querySelector('p[aria-label*="Color variant"]');
+
+        // Initialize variant variables
+        var item_variant_size = null;
+        var item_variant_color = null;
+
+        // Check if the size variant exists and extract its value
+        if (sizeVariant) {
+            var productSizeRaw = sizeVariant.textContent;
+            item_variant_size = productSizeRaw.replace('Size: ', ''); // Remove 'Size: ' from the text
         }
 
-    });
-};
+        // Check if the color variant exists and extract its value
+        if (colorVariant) {
+            var productColorRaw = colorVariant.textContent;
+            item_variant_color = productColorRaw.replace('Color: ', ''); // Remove 'Color: ' from the text
+        }
+
+        // Push the data into dataLayer along with the position
+        dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+        dataLayer.push({
+            'event': 'remove_from_cart',
+            'ecommerce': {
+                'currencyCode': 'USD',
+                'items': [{                        //  adding a product to a shopping cart.
+                    'item_name': productTitle,
+                    'price': productPrice,
+                    'item_variant': item_variant_size + " | " + item_variant_color,
+                    'quantity': productQuantityOriginal,
+                    'item_variant_size': item_variant_size,
+                    'item_variant_color': item_variant_color,
+
+                }]
+            }
+
+        });
+    };
+
+    function productDecrementedFromCartPush(event) {
+        // Prevent the default behavior (page reload)
+        //event.preventDefault();
+        //event.stopPropagation();
+
+        window.dataLayer = window.dataLayer || [];
+
+        // Select element of clicked product's title and get product title
+        var productBlock = event.target.closest(".cart-row");
+        var productTitle = productBlock.querySelector(".cart-row-title").innerText; //get the inner text within
+        var quantityInput = productBlock.querySelector('.cart-row-qty-input');
+        var productQuantityOriginal = quantityInput.value;
+        var productPriceOriginal = productBlock.querySelector(".cart-row-price").innerText; //get the inner text within
+        var productPrice = Math.round((parseFloat(productPriceOriginal.replace(/[^\d.-]/g, '')) / parseFloat(productQuantityOriginal.replace(/[^\d.-]/g, '')))).toFixed(2);
+
+        var sizeVariant = productBlock.querySelector('p[aria-label*="Size variant"]');
+        var colorVariant = productBlock.querySelector('p[aria-label*="Color variant"]');
+
+        // Initialize variant variables
+        var item_variant_size = null;
+        var item_variant_color = null;
+
+        // Check if the size variant exists and extract its value
+        if (sizeVariant) {
+            var productSizeRaw = sizeVariant.textContent;
+            item_variant_size = productSizeRaw.replace('Size: ', ''); // Remove 'Size: ' from the text
+        }
+
+        // Check if the color variant exists and extract its value
+        if (colorVariant) {
+            var productColorRaw = colorVariant.textContent;
+            item_variant_color = productColorRaw.replace('Color: ', ''); // Remove 'Color: ' from the text
+        }
+
+
+        // Push the data into dataLayer along with the position
+        dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+        dataLayer.push({
+            'event': 'remove_from_cart',
+            'ecommerce': {
+                'currencyCode': 'USD',
+                'items': [{                        //  adding a product to a shopping cart.
+                    'item_name': productTitle,
+                    'price': productPrice,
+                    'item_variant': item_variant_size + " | " + item_variant_color,
+                    'quantity': 1,
+                    'item_variant_size': item_variant_size,
+                    'item_variant_color': item_variant_color,
+
+                }]
+            }
+
+        });
+    };
 
 </script>

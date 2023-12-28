@@ -1,43 +1,43 @@
 <script>
-// view_item_list: This event signifies that a product list was shown to the user.
-// View item list measures how many times item list are viewed.
-// Send a view_item_list event whenever a user views a product impression.
+    // view_item_list: This event signifies that a product list was shown to the user.
+    // View item list measures how many times item list are viewed.
+    // Send a view_item_list event whenever a user views a product impression.
 
-function productViewPush() {
-    window.dataLayer = window.dataLayer || [];
+    function productViewPush() {
+        window.dataLayer = window.dataLayer || [];
 
-    // Create an array to store product data
-    var products = [];
+        // Create an array to store product data
+        var products = [];
 
-    // Select all elements with class "ProductList-meta" to access all of the product blocks (as the parent element)
-    var productListBlocks = document.querySelectorAll('.ProductList-meta');
+        // Select all elements with class "ProductList-meta" to access all of the product blocks (as the parent element)
+        var productListBlocks = document.querySelectorAll('.ProductList-meta');
 
-    // Loop through each product and collect data
-    productListBlocks.forEach(function (productListBlocks) {
-        // Find the child element with the class "ProductList-title" and get its inner text
-        var productTitle = productListBlocks.querySelector('.ProductList-title').innerHTML;
-        var productPrice = productListBlocks.querySelector('.product-price').innerText;
+        // Loop through each product and collect data
+        productListBlocks.forEach(function (productListBlocks) {
+            // Find the child element with the class "ProductList-title" and get its inner text
+            var productTitle = productListBlocks.querySelector('.ProductList-title').innerHTML;
+            var productPrice = productListBlocks.querySelector('.product-price').innerText;
 
-        // Get the url path of the product list. I use this as my item list location.
-        var itemListLocation = document.location.pathname;
+            // Get the url path of the product list. I use this as my item list location.
+            var itemListLocation = document.location.pathname;
 
-        // Add the product data to the array
-        products.push({
-            item_name: productTitle,
-            price: productPrice,
-            item_list_name: itemListLocation,
+            // Add the product data to the array
+            products.push({
+                item_name: productTitle,
+                price: productPrice,
+                item_list_name: itemListLocation,
+            });
         });
-    });
 
-    // Push the array of products into dataLayer
-    window.dataLayer.push({
-        'event': 'view_item_list',
-        ecommerce: {
-            items: products
-        }
-    });
-}
+        // Push the array of products into dataLayer
+        window.dataLayer.push({
+            'event': 'view_item_list',
+            ecommerce: {
+                items: products
+            }
+        });
+    }
 
-// Call the function to push the data
-productViewPush();
+    // Call the function to push the data
+    productViewPush();
 </script>
