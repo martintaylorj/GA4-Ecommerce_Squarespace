@@ -11,6 +11,9 @@ Currently, Squarespace's native GA4 integration only tracks purchases. But if ec
 
 - Discover which products users view the most
 
+Once you've implemented this code, you'll be able to use the Purchase Journey funnel report in GA4 to see how users navigate through your purchase flow:
+
+![screenshot of GA4 ecommerce event tag](./images/Analytics _ Purchase journey_ Device category.png)
 
 **Prerequisites** Before getting started, you’ll need to create a GA4 ecommerce tag in Google Tag Manager. This is the tag that will actually send all of your ecommerce data to GA4, and fortunately it's pretty simple to set up!
 
