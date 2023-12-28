@@ -153,7 +153,7 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 
 ##  remove_from_cart
 
-[Get the custom code here in my repo.](ga4-ecommerce-remove_from_cart.htm)
+[Get the custom code here in my repo.](ga4-ecommerce-remove_from_cart.html)
 
 ### Trigger Configuration: 
 **Trigger Type**: Page View - Window Loaded
@@ -189,6 +189,8 @@ https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda58563
 Squarespace doesn’t make it easy to track your ecommerce data in GA4, but I’m hoping this guide helps you properly set it up in Google Tag Manager.
 If you did find this repo helpful, please [let me know in the discussion board](https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/discussions/1) so I know to continue creating this type of content. Have questions about the code? Let me know that too!
 
-Want  me to set up your implementation? Then [fill out my contact form](https://www.tayloreddata.com/book-a-discovery-call) to start the conversation.
+Want  to get insights faster? Then let me to set up your implementation! [Fill out my contact form](https://www.tayloreddata.com/book-a-discovery-call) to get started.
 
 Thanks for reading!
+
+<img src="./images/taylor-working-bitmoji-lofi-girl-window-transparent.png" width=50% height=50% align="center">
