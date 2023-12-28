@@ -114,8 +114,6 @@ I needed to create two separate tags for the add_to_cart event: one for when som
   <summary> Click on the Add to Cart Button</summary>
  
    [Get the custom code here in my repo.](ga4-ecommerce-add_to_cart-clicked-on-add-to-cart.html)
-
-https://github.com/martintaylorj/GA4-Ecommerce_Squarespace/blob/b5284ddafda5856332fd1ea3bbce043f060f89ae/ga4-ecommerce-add_to_cart-clicked-on-add-to-cart.html 
  
  ### Trigger Configuration:
 **Trigger Type**: Click - All Elements
