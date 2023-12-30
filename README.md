@@ -75,7 +75,7 @@ All of these ecommerce events will be implemented using GTM’s custom HTML tag 
 ### Trigger Configuration:
 **Trigger Type**: Page View - Window Loaded
 
-**This trigger fires on**: Page Path equals /store
+**This trigger fires on**: Page Path equals `/store`
 
 > [!TIP]
 > I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
@@ -86,11 +86,11 @@ All of these ecommerce events will be implemented using GTM’s custom HTML tag 
 
 ### Trigger Configuration:
 There are 2 triggers for this tag
-1. **Trigger Type**: Custom Event name: ssRawProductDetailPush
+1. **Trigger Type**: Custom Event name: `ssRawProductDetailPush`
 
    OR
    
-2.**Trigger Type**:  Element Visibility > Selection Method > CSS Selector > Element Selector: .sqs-product-quick-view-content
+2.**Trigger Type**:  Element Visibility > Selection Method > CSS Selector > Element Selector: `.sqs-product-quick-view-content`
 
 > [!TIP]
 > For my Squarespace template, there are two ways for a user to view an item, by clicking the quick view button and seeing the quick view popup or by viewing the full product page. When the full product page is viewed, Squarespace automatically pushes a custom event to the data layer: ssRawProductDetailPush. 
@@ -103,7 +103,7 @@ When the quick view pops up, there’s a CSS selector associated with it (.sqs-p
 ### Trigger Configuration:
 **Trigger Type**: Page View - Window Loaded
 
-**This trigger fires on**: Page Path equals /store
+**This trigger fires on**: Page Path equals `/store`
 
 > [!TIP]
 > My custom code attaches a click event listener to every product block on the /store page. Since I’m using an event listener, I need to use the window loaded trigger to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
@@ -119,9 +119,16 @@ I needed to create two separate tags for the add_to_cart event: one for when som
  ### Trigger Configuration:
 **Trigger Type**: Click - All Elements
 
-**This trigger fires on**: Click Text contains ADD TO CART
+**This trigger fires on**: Click Text contains `ADD TO CART`
 
 > 💡 You can change the click text if you’re website uses different text.
+
+OR
+
+**Trigger Type**: Click - All Elements
+
+**This trigger fires on**: Click Classes contains `sqs-add-to-cart-button`
+
 </details>
 
 <details>
@@ -132,7 +139,7 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 ### Trigger Configuration:
 **Trigger Type**: Click - All Elements
 
-**This trigger fires on**: Page Path contains /cart
+**This trigger fires on**: Page Path contains `/cart`
   Trigger Type: Page View - Window Loaded
 
 > 💡  I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
@@ -145,7 +152,7 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 ### Trigger Configuration: 
 **Trigger Type**: Page View - Window Loaded
 
-**This trigger fires on**: Page Path contains /cart 
+**This trigger fires on**: Page Path contains `/cart`
 
 > [!TIP]
 > I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
@@ -157,7 +164,7 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 ### Trigger Configuration: 
 **Trigger Type**: Page View - Window Loaded
 
-**This trigger fires on**: Page Path contains /cart
+**This trigger fires on**: Page Path contains `/cart`
 
 > [!TIP]
 > I chose the Window Loaded trigger type to ensure the HTML elements were fully loaded on the page before firing the tag. This is is especially critical for tags where we attach event listeners to elements that might be rendered after the initial page load.
@@ -169,7 +176,7 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 ### Trigger Configuration:
 **Trigger Type**: Click - All Elements
 
-**This trigger fires on**: Click Classes contains cart-checkout-button
+**This trigger fires on**: Click Classes contains `cart-checkout-button`
 
 > [!TIP]
 > This code takes advantage of the JSON Squarespace creates out of the box for us. There’s actually JSON on every ecommerce page, but we can’t use it because its static on page load and doesn’t change if the user changes anything about the product or cart after the initial page load. 
@@ -181,7 +188,7 @@ I needed to create two separate tags for the add_to_cart event: one for when som
 ### Trigger Configuration:
 **Trigger Type**: Page View
 
-**This trigger fires on**: Page Path contains /commerce/orders/
+**This trigger fires on**: Page Path contains `/commerce/orders/`
 
 ## Summary
 
