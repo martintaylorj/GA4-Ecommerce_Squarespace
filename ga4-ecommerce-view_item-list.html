@@ -1,7 +1,12 @@
 <script>
-    // view_item_list: This event signifies that a product list was shown to the user.
-    // View item list measures how many times item list are viewed.
-    // Send a view_item_list event whenever a user views a product impression.
+    /*
+    Final Version as of 12/30/2023: With the upgrade to Squarespace 7.1, I can now use data attributes to target these elements.
+    
+    This code will: send a view_item_list event whenever a user views a product impression.
+    
+    💡: view_item_list: This event signifies that a product list was shown to the user.
+    💡: View item list measures how many times item list are viewed.
+    */
 
     function productViewPush() {
         window.dataLayer = window.dataLayer || [];
@@ -9,14 +14,30 @@
         // Create an array to store product data
         var products = [];
 
-        // Select all elements with class "ProductList-meta" to access all of the product blocks (as the parent element)
-        var productListBlocks = document.querySelectorAll('.ProductList-meta');
+        // Select the parent element of the product blocks so that I can later access the individual product block when a user clicks it. To make this code more flexible, I created a DOM variable for this that looks for: section[data-test="products-list"]'
+
+        //------------------EDIT these lines 👇🏾--------------------------------------------------------
+        // Edit these Lines edit these with your owm selectors. As long as you keep the same variable names I'm using, the rest of the code will work:
+
+        /*
+         These defaults work in version 7.0 of Squarespace:
+          var productListBlocks = document.querySelectorAll('.ProductList-meta');
+          var productBlockTitleSelector = ".ProductList-title";
+          var productBlockPriceSelector = ".product-price";
+       
+        */
+
+        // These defaults work in version 7.1 of Squarespace
+        var productListBlocks = document.querySelectorAll('section[data-test="products-list"]');
+        var productBlockTitleSelector = '[data-test="plp-grid-title"]';
+        var productBlockPriceSelector = '[data-test="plp-grid-prices"]';
+        //------------------------------------------------------------------------------------------
 
         // Loop through each product and collect data
-        productListBlocks.forEach(function (productListBlocks) {
+        productListBlocks.forEach(function (productListBlock) {
             // Find the child element with the class "ProductList-title" and get its inner text
-            var productTitle = productListBlocks.querySelector('.ProductList-title').innerHTML;
-            var productPrice = productListBlocks.querySelector('.product-price').innerText;
+            var productTitle = productListBlock.querySelector(productBlockTitleSelector).innerHTML;
+            var productPrice = productListBlock.querySelector(productBlockPriceSelector).innerText;
 
             // Get the url path of the product list. I use this as my item list location.
             var itemListLocation = document.location.pathname;
