@@ -28,7 +28,7 @@
         */
 
         // These defaults work in version 7.1 of Squarespace
-        var productListBlocks = document.querySelectorAll('section[data-test="products-list"]');
+        var productListBlocks = document.querySelectorAll('.products-list .grid-item');
         var productBlockTitleSelector = '[data-test="plp-grid-title"]';
         var productBlockPriceSelector = '[data-test="plp-grid-prices"]';
         //------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@
         // Loop through each product and collect data
         productListBlocks.forEach(function (productListBlock) {
             // Find the child element with the class "ProductList-title" and get its inner text
-            var productTitle = productListBlock.querySelector(productBlockTitleSelector).innerHTML;
+            var productTitle = productListBlock.querySelector(productBlockTitleSelector).innerHTML.trim();
             var productPrice = productListBlock.querySelector(productBlockPriceSelector).innerText;
 
             // Get the url path of the product list. I use this as my item list location.
